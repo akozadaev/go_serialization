@@ -12,23 +12,19 @@ type Person struct {
 }
 
 func main() {
-	p := &Person{"Alexey", "45"}
+	// Сериализация (marshal)
+	p := Person{"Alexey", "45"}
 	jsonData, err := json.Marshal(p)
 	if err != nil {
-		log.Println("Marshal error: ", err)
+		log.Fatal("Ошибка сериализации:", err)
 	}
+	fmt.Println("Сериализованный JSON:", string(jsonData))
 
-	fmt.Println("Data: ", jsonData)
-	//fmt.Println("Data: ", string(jsonData))
-
-	var p2 = Person{"Alexey", "45"}
-	fmt.Println(p2)
-	jsonData2, err := json.Marshal(p2)
-	fmt.Println("Data: ", string(jsonData2))
-
-	err = json.Unmarshal(jsonData, p)
+	// Десериализация (unmarshal)
+	var p2 Person
+	err = json.Unmarshal(jsonData, &p2)
 	if err != nil {
-		log.Println("Unmarshal error: ", err)
+		log.Fatal("Ошибка десериализации:", err)
 	}
-	fmt.Println("Data: ", p)
+	fmt.Printf("Десериализованный объект: %+v\n", p2)
 }
