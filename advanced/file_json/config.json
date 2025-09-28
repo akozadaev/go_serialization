@@ -1,7 +1,0 @@
-{
-  "debug": true,
-  "servers": [
-    "server1",
-    "server2"
-  ]
-}
